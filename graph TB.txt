@@ -1,0 +1,214 @@
+graph TB
+    %% ==== PRESENTATION LAYER ====
+    subgraph PRES["🖥️ PRESENTATION LAYER"]
+        UI["`**Desktop Application**
+        💬 Chat Interface
+        🚀 Project Setup Wizard
+        👀 Document Preview
+        📤 Export Manager`"]
+    end
+    
+    %% ==== INPUT SOURCES LAYER ====
+    subgraph INPUT["📥 INPUT SOURCES LAYER"]
+        direction TB
+        subgraph DATA_IN["Data Sources"]
+            QMS["`**QMS Documents**
+            📄 HTML, Word, Excel
+            📊 PDF, Visio Files
+            🔄 Workflows & Diagrams
+            💾 <10GB total`"]
+        end
+        
+        subgraph CONTEXT_IN["Context & Feedback"]
+            direction LR
+            CONTEXT["`**Project Context**
+            🎯 Project Type
+            👥 Team Roles
+            🛠️ Client Tools
+            ✅ Compliance Req.`"]
+            
+            FEEDBACK["`**User Feedback**
+            ⭐ Process Ratings
+            ✏️ Manual Edits
+            📈 Usage Patterns
+            🎯 Success Metrics`"]
+        end
+    end
+    
+    %% ==== DATA PROCESSING LAYER ====
+    subgraph PROCESS["⚙️ DATA PROCESSING LAYER"]
+        direction LR
+        PARSE["`**Document Parser**
+        📝 Multi-format Support
+        🔍 Content Extraction
+        📊 Metadata Enrichment`"]
+        
+        CHUNK["`**Content Processor**
+        ✂️ Semantic Chunking
+        🏷️ Classification
+        🧮 Embedding Generation`"]
+    end
+    
+    %% ==== KNOWLEDGE STORAGE LAYER ====
+    subgraph STORAGE_LAYER["💾 KNOWLEDGE STORAGE LAYER"]
+        direction LR
+        VECTOR["`**Vector Database**
+        🔍 Embeddings
+        🔎 Similarity Search
+        📊 Semantic Index`"]
+        
+        GRAPH["`**Graph Database**
+        🔗 Process Relations
+        👥 Role Mappings
+        🛠️ Tool Dependencies`"]
+        
+        DOCS["`**Document Store**
+        📁 Raw Documents
+        📋 Templates Library
+        📈 Version Control`"]
+    end
+    
+    %% ==== INTELLIGENCE LAYER ====
+    subgraph INTEL["🧠 INTELLIGENCE LAYER"]
+        direction TB
+        
+        subgraph MEMORY_SYS["Memory System"]
+            MEMORY["`**Memory Engine**
+            🧠 Short-term Context
+            📚 Long-term Learning
+            👤 User Preferences
+            🎯 Pattern Recognition`"]
+        end
+        
+        subgraph PROCESSING_ENG["Processing Engines"]
+            direction LR
+            RAG["`**RAG Engine**
+            🔍 Semantic Retrieval
+            📊 Context Ranking
+            🔄 Hybrid Search
+            🧠 Memory Integration`"]
+            
+            CONTEXT_ENG["`**Context Engine**
+            ⚙️ Process Customization
+            🔄 Role Mapping
+            🛠️ Tool Adaptation
+            📋 Profile Management`"]
+        end
+    end
+    
+    %% ==== CORE AI LAYER ====
+    subgraph CORE["🤖 CORE AI PROCESSING LAYER"]
+        LLM["`**LLM Engine**
+        🤖 DeepSeek/LLAMA API
+        💭 Advanced Prompt Engineering
+        🎯 Context Window Management
+        ✨ Intelligent Response Generation
+        🧠 Memory-Informed Processing
+        🔄 Adaptive Learning Integration`"]
+    end
+    
+    %% ==== OUTPUT GENERATION LAYER ====
+    subgraph GEN["📝 OUTPUT GENERATION LAYER"]
+        direction TB
+        
+        subgraph GENERATION["Content Generation"]
+            GENERATOR["`**Document Generator**
+            📄 Multi-format Output
+            📋 Template Engine
+            🔄 Workflow Visualizer
+            📊 Quality Validation`"]
+        end
+        
+        subgraph LEARNING["Continuous Learning"]
+            IMPROVE["`**Learning Engine**
+            📊 Feedback Analysis
+            📈 Usage Analytics
+            🎯 Success Tracking
+            🔄 Model Refinement`"]
+        end
+    end
+    
+    %% ==== OUTPUT DELIVERY LAYER ====
+    subgraph OUT["📤 OUTPUT DELIVERY LAYER"]
+        direction LR
+        OFFICE["`**Microsoft Suite**
+        📄 Word Documents
+        📊 Excel Spreadsheets
+        📋 PowerPoint Slides
+        🔄 Visio Diagrams`"]
+        
+        ASSETS["`**Process Assets**
+        📝 Custom Guidelines
+        📋 Smart Checklists
+        🔄 Workflow Templates
+        📊 PM Templates`"]
+    end
+    
+    %% ========== PRIMARY DATA FLOW ==========
+    %% User Interface Flow
+    UI --> CONTEXT
+    UI --> FEEDBACK
+    
+    %% Data Ingestion Flow
+    QMS --> PARSE
+    PARSE --> CHUNK
+    
+    %% Storage Flow
+    CHUNK --> VECTOR
+    CHUNK --> GRAPH
+    CHUNK --> DOCS
+    
+    %% Intelligence Processing Flow
+    VECTOR --> RAG
+    GRAPH --> RAG
+    DOCS --> RAG
+    VECTOR --> MEMORY
+    
+    %% Context Integration
+    CONTEXT --> CONTEXT_ENG
+    CONTEXT_ENG --> RAG
+    
+    %% Core Processing Flow
+    RAG --> LLM
+    MEMORY --> LLM
+    CONTEXT_ENG --> LLM
+    
+    %% Generation Flow
+    LLM --> GENERATOR
+    
+    %% Output Flow
+    GENERATOR --> OFFICE
+    GENERATOR --> ASSETS
+    
+    %% Delivery to User
+    OFFICE --> UI
+    ASSETS --> UI
+    
+    %% ========== LEARNING & FEEDBACK LOOPS ==========
+    FEEDBACK --> IMPROVE
+    IMPROVE -.->|Learning Updates| MEMORY
+    IMPROVE -.->|Model Tuning| LLM
+    IMPROVE -.->|Template Refinement| GENERATOR
+    IMPROVE -.->|Process Optimization| RAG
+    
+    %% ========== STYLING ==========
+    classDef layerHeader fill:#f0f0f0,stroke:#333,stroke-width:2px,color:#333,font-weight:bold
+    classDef userLayer fill:#e3f2fd,stroke:#1976d2,stroke-width:2px,color:#000
+    classDef inputLayer fill:#fff3e0,stroke:#f57c00,stroke-width:2px,color:#000
+    classDef processLayer fill:#e8f5e8,stroke:#388e3c,stroke-width:2px,color:#000
+    classDef storageLayer fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    classDef intelLayer fill:#fff8e1,stroke:#fbc02d,stroke-width:2px,color:#000
+    classDef coreLayer fill:#ffebee,stroke:#d32f2f,stroke-width:3px,color:#000
+    classDef genLayer fill:#e0f2f1,stroke:#00796b,stroke-width:2px,color:#000
+    classDef outputLayer fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+    classDef subgroupStyle fill:#f9f9f9,stroke:#666,stroke-width:1px,color:#000
+    
+    %% Apply styles to components
+    class UI userLayer
+    class QMS,CONTEXT,FEEDBACK inputLayer
+    class PARSE,CHUNK processLayer
+    class VECTOR,GRAPH,DOCS storageLayer
+    class MEMORY,RAG,CONTEXT_ENG intelLayer
+    class LLM coreLayer
+    class GENERATOR,IMPROVE genLayer
+    class OFFICE,ASSETS outputLayer
